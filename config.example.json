@@ -1,0 +1,25 @@
+{
+    "user": {
+        "username": "dev",
+        "password": "123456"
+    },
+    "provider": {
+        "cloudflare": [
+            {
+                "name": "your email",
+                "auth": {
+                    "token": "your token"
+                }
+            }
+        ],
+        "dnspod": [
+            {
+                "name": "dptest",
+                "auth": {
+                    "id": "your id",
+                    "token": "your token"
+                }
+            }
+        ]
+    }
+}

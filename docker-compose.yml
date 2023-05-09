@@ -1,0 +1,16 @@
+version: '3'
+services:
+  oridns:
+    build: .
+    container_name: OriDNS
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - SECRET_KEY=secret
+      - TOKEN_EXPIRE_TIME=1209600
+      - TOKEN_SALT=salt
+    ports:
+      - '3000:3000'
+    volumes:
+      - './config.json:/app/config.json'
+      - './logs:/app/logs'

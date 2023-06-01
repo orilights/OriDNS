@@ -71,6 +71,7 @@ import DialogRecordUpdate from '@/components/Dialog/record/Update.vue'
 import DialogRecordConfirmDelete from '@/components/Dialog/record/ConfirmDelete.vue'
 import { useStore } from '@/store'
 import { domainInfoGet, recordCreate, recordDelete, recordList, recordUpdate } from '@/utils/api'
+import { RECORD_TYPES_SORT } from '@/config'
 
 interface DomainInfo {
   id: string
@@ -149,10 +150,17 @@ function fetchData() {
   recordList(store.token, String(domainId))
     .then(res => res.json())
     .then((data) => {
-      if (data.success === true)
-        records.value = data.data
-      else
-        toast.error(data.msg)
+      if (data.success === true) {
+        const _rawData: Record[] = data.data
+        _rawData.sort((a, b) => {
+          if (a.type === b.type)
+            return a.name.localeCompare(b.name)
+          else
+            return RECORD_TYPES_SORT.indexOf(a.type) - RECORD_TYPES_SORT.indexOf(b.type)
+        })
+        records.value = _rawData
+      }
+      else { toast.error(data.msg) }
     })
     .catch(err => toast.error(err.message))
 }

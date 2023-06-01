@@ -28,3 +28,12 @@ export const RECORD_TYPES = [
   'MX',
   'TXT',
 ]
+
+export const RECORD_TYPES_SORT = [
+  'NS',
+  'CNAME',
+  'A',
+  'AAAA',
+  'MX',
+  'TXT',
+]
